@@ -37,24 +37,18 @@
     <CallTarget Targets="Default" />
   </Target>
 
-  <Target Name="UnitTests" DependsOnTargets="$(DoBuildSolutionsDependsOn)">
-    <Exec Command="$(BuildSolutionDir)/lib/tests/nunit-console-x86.exe $(BuildSolutionDir)/tests/ServiceStack.ServiceHost.Tests/bin/$(Configuration)/ServiceStack.ServiceHost.Tests.dll $(NUnitConsoleArgs)" />
-    <Exec Command="$(BuildSolutionDir)/lib/tests/nunit-console-x86.exe $(BuildSolutionDir)/tests/ServiceStack.Messaging.Tests/bin/$(Configuration)/ServiceStack.Messaging.Tests.dll $(NUnitConsoleArgs)" />
-    <Exec Command="$(BuildSolutionDir)/lib/tests/nunit-console-x86.exe $(BuildSolutionDir)/tests/ServiceStack.Common.Tests/bin/$(Configuration)/ServiceStack.Common.Tests.dll $(NUnitConsoleArgs)" />
-    <Exec Command="$(BuildSolutionDir)/lib/tests/nunit-console-x86.exe $(BuildSolutionDir)/tests/ServiceStack.Auth.Tests/bin/$(Configuration)/ServiceStack.Auth.Tests.dll $(NUnitConsoleArgs)" />
-    <Exec Command="$(BuildSolutionDir)/lib/tests/nunit-console-x86.exe $(BuildSolutionDir)/tests/ServiceStack.WebHostApp/bin/ServiceStack.WebHost.Endpoints.Tests.dll $(NUnitConsoleArgs)" />
-  </Target>
+
 
   <Target Name="Build">
     <MSBuild Projects="../src/ServiceStack.Interfaces/ServiceStack.Interfaces.csproj" Properties="Configuration=$(Configuration)"/>
     <MSBuild Projects="../src/ServiceStack.Common/ServiceStack.Common.csproj" Properties="Configuration=$(Configuration)"/>
     <MSBuild Projects="../src/ServiceStack/ServiceStack.csproj" Properties="Configuration=$(Configuration)"/>
+    <MSBuild Projects="../../ServiceStack.OrmLite/src/ServiceStack.OrmLite/ServiceStack.OrmLite.csproj" Properties="Configuration=$(Configuration)"/>
+    <MSBuild Projects="../../ServiceStack.OrmLite/src/ServiceStack.OrmLite.SqlServer/ServiceStack.OrmLite.SqlServer.csproj" Properties="Configuration=$(Configuration)"/>
   </Target>
 
   <Target Name="BuildSolutions">
-    <MSBuild Projects="$(BuildSolutionDir)/src/ServiceStack.sln" Targets="Build"
-      Properties="Configuration=$(Configuration)" />
-    <MSBuild Projects="$(BuildSolutionDir)/src/ServiceStack.SL5.sln" Targets="Build"
+    <MSBuild Projects="$(BuildSolutionDir)/src/ServiceStack.Grantek.sln" Targets="Build"
       Properties="Configuration=$(Configuration)" />
   </Target>
 
